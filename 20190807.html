@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>20190807 수요일</title>
+    <style>
+      h2 {
+        font-size: 35px;
+        text-align: center;
+      }
+
+      .js {
+        font-size: 25px;
+        font-style: oblique;
+        color: red;
+      }
+
+      #ex {
+        font-size:13px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>20190807 수요일</h2>
+    <ul>
+      <li><h3>생활코딩 JS 제대로 건들여보기</h3></li>
+      <ol>
+        <li><h4>제어할 태그 선택하기</h4></li>
+        지금까지 html과 CSS와 JS를 배웠는데, 이 문법들을 조합해보자<br>
+        <a href="ex_js1.html" class="js">실습페이지!</a><br>
+        실습 예제를 보면 우리가 버튼을 클릭했을 때, body태그의 속성들이 바뀐다. 더 자세하게 풀어써보면 button을 클릭하는 이벤트가 발생 했을 때, 1. 자바스크립트 코드가 html의 body를 건들이기 위해 body를 선택해야 하고 2. body를 선택했으면 자바스크립트 코드가 body태그에 CSS 코드를 삽입을 해주어야 한다.<br>
+        일단 첫번째를 해결하기 위해 구글에 JavaScript select tag by css selector 를 검색 해보면, document.querySelector('클래스명') 이라는 문법이 나오는데, 우리는 body태그를 선택할 것이기 때문에 클래스명에 body를 써넣어주면 1번은 클리어가 된다.<br>
+        두번째를 해결하기 위해선 구글에 javascript element style 이라고 검색을 해보면 document.getElementById("id값").style 이라는 문법이 나온다. 근데 getElementById 와 querySelector는 대체 가능하기 때문에 1번 문법에 .style만 추가해 주면 된다.<br>
+        그리곡 body태그에 CSS코드로 배경색과 글자색을 바꾸어 주어야 하는데, 우리는 자바스크립트를 사용하기 때문에 자바스크립트 문법을 따라야 한다. 그럼 구글에 javascript style backgroundcolor 라고 검색하면 style.backgroundColor라는 문법이 나온다. 여기서 주의할점은 대문자를 구별하기 때문에 대문자를 유의하고, CSS 문법 background-color과는 확연히 다르다는 것을 알아야 한다.
+
+        <li><h4>비교 연산자와 불리언 그리고 조건문 활용</h4></li>
+        <u>*자바스크립트에서 '같다' 를 나타내는 기호는 ===이다.*</u><br>
+        <a href="ex_js2.html" class="js">실습페이지!</a><br>
+        <p>이 전에 만든 실습은 night버튼과 day버튼이 2개가 있어서 버튼마다 기능이 있었다. 하지만 저 2개의 기능을 가진 버튼 한개를 만들고 싶다<div id="ex">(버튼을 한번 누르면 night기능, 다시 누르면 day기능을 하는 것 그리고 이것을 toggle이라고 부른다.)</div> 어떻게 해야 할까? 조건문을 이용해서 실습해보자!</p>
+        <p>input 태그의 value 값을 가져올 때 어떻게 해야할까?.. 구글에 검색해보자. JavaScript element get value 이런식으로 쳐보면 document.getElementById(id값).value 라는 문법이 나온다. 하지만 실습에서는 querySelector('#id값')을 사용했다. 이로 유추해 볼 수 있는 것은 input 태그의 value값을 가져오려면 id값을 가져야하고, .value라는 문법이 필요하다는 것이다. 이렇게 가져온 value값으로 조건문을 완성해보자.</p>
+        근데 저런 어려운 문법말고 그냥 value==='night'이라고 했을때도 동작하는데 이거 뭐야;
+
+        <li><h4>리팩토링 중복의 제거</h4></li>
+        팩토링이 그냥 공장으로 보내다 라고 생각한다면 리팩토링은 공장으로 다시 보내서 수정한다고 생각하면 될 것 같다. 그럼 코드를 좀 더 개선한다는 뜻이 될 것이다. 그럼 위에서 실습했던 코드를 리팩토링 해보도록 하자. <a href="ex_js2-1.html" class="js">실습페이지!</a><br>
+        위에서 만든 토글 버튼을 가장 밑에다가 붙여넣기 해보자. 기능은 동작하지만 button value가 바뀌질 않는다. 그럼 밑에 붙여넣은 버튼의 id값을 바꿔주면 되는데, 이게 1억개면 1억개 다바꿔야한다. 진짜 큰일날수도있다. 이럴 때 써야하는게 <strong style="font-size:30px">this</strong> 라는 문법이다.<br>
+        이 this라는 문법은 간단히 말하면 어떤 값이 범위안에 감싸져 있을때, 그값이 범위 안에서만 동작하게 하도록하는 코드? 라고 생각하면 될 것 같다. 말로 설명이 안된다. 느낌대로 가야한다 이건<br><br>
+        그리고 코딩을 잘하는법은 따로 없다. 그냥 내가 작성한 코드를 쫙 보고 중복을 미친듯이 줄이면 된다. 우리가 작성한 코드에서도 document.querySelector. 코드가 중복이 된다. 이거 어떻게 없앨겨?
+
+        <li><h4>배열과 반복문의 활용</h4></li>
+        <p>배열은 그냥 배열이다. [] 안에 넣고싶은거 넣으면 된다. 그리고 이 배열 요소의 개수 세고 싶으면 .lenght라는 문법이 있다. 배열에는 수도없이 많은 문법들이 있으니 나중에 구글에 쳐서 찾아보도록하자.</p>
+        <p>반복문도 그냥 반복문이다. 어떤 범위안에 코드를 반복적으로 수행하고 싶으면 사용하면 된다. 여기선 while문을 배웠다. 그러면 지금까지 배운 배열과 반복문을 사용해 실습해보자!</p>
+        <a href="ex_js3.html" class="js">실습페이지!</a><br>
+        우리는 이 실습페이지에 있는 모든 a태그를 가져오고 싶다. querySelector라는 메소드는 맨 첫번째 a태그만 가져오니 다른 메소드를 사용해야한다. 구글에 쳐보면 querySelectorAll이라는 메소드가 나오는데, 이 결과값은 배열로 나온다( 정확히는 노드 리스트). 웹페이지의 콘솔창에서 이 결과값을 alist 라는 변수에 넣고 console.log메소드를 사용해서 출력해보자.
+
+
+
+
+
+
+      </ol>
+
+    </ul>
+  </body>
+</html>
